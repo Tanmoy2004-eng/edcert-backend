@@ -1,0 +1,420 @@
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdCert Solutions - Buy Accredited MOOCs Certificates</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --danger: #ef4444;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary);
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #4338ca;
+        }
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 2rem 0;
+        }
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #e2e8f0;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+        }
+        .progress-step.active .step-number {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .progress-step.completed .step-number {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .step-label {
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .payment-method {
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            flex: 1;
+            cursor: pointer;
+        }
+        .payment-method.selected {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.1);
+        }
+        .qr-code {
+            background-color: #f3f4f6;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .qr-code img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 0.5rem;
+        }
+        .hidden {
+            display: none;
+        }
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .payment-methods {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EdCert Solutions</h1>
+        <p>Authentic MOOCs Certificates for B.Tech and B.Pharm Programs</p>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">Our Certificate Programs</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">B.Tech Certificate</div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li>✔ 8.0 Points</li>
+                            <li>✔ Digital Copy</li>
+                            <li>✔ Verification Available</li>
+                        </ul>
+                        <div class="price">₹699</div>
+                        <button class="btn btn-block" onclick="showOrderForm('B.Tech Certificate')">Order Now</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">B.Pharm Certificate</div>
+                    <div class="card-body">
+                        <ul style="list-style-type: none;">
+                            <li>✔ 8.0 Points</li>
+                            <li>✔ Digital Copy</li>
+                            <li>✔ Verification Available</li>
+                        </ul>
+                        <div class="price">₹699</div>
+                        <button class="btn btn-block" onclick="showOrderForm('B.Pharm Certificate')">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section hidden" id="orderSection">
+            <h2 class="section-title">Place Your Order</h2>
+            <div class="card">
+                <div class="card-header" id="orderTitle">Order Form</div>
+                <div class="card-body">
+                    <form id="orderForm">
+                        <input type="hidden" id="certificateType">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required placeholder="Enter your full name as it should appear on certificate">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required placeholder="Enter your email for updates">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Contact Number</label>
+                            <input type="tel" id="phone" required placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp Number (if different)</label>
+                            <input type="tel" id="whatsapp" placeholder="Enter WhatsApp number for faster communication">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Payment Method</label>
+                            <div class="payment-methods">
+                                <div class="payment-method" onclick="selectPayment('qr')">
+                                    <input type="radio" name="payment" id="qrPayment" value="qr" checked>
+                                    <label for="qrPayment">QR Code Payment</label>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment('cod')">
+                                    <input type="radio" name="payment" id="codPayment" value="cod">
+                                    <label for="codPayment">Cash on Delivery</label>
+                                </div>
+                            </div>
+                            <div class="qr-code" id="qrContainer">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=7001822095@ptsbi&pn=EdCert%20Solutions&mc=1234&tid=000000000000&am=699&cu=INR&url=https://edcertsolutions.com" alt="Payment QR Code">
+                                <p>Scan this QR code to make payment of ₹699</p>
+                                <p>UPI ID: 7001822095@ptsbi</p>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-block">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="trackSection">
+            <h2 class="section-title">Track Your Order</h2>
+            <div class="card">
+                <div class="card-header">Order Status</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="orderId">Enter Your Order ID</label>
+                        <input type="text" id="orderId" placeholder="e.g., ED2023001">
+                        <button class="btn btn-block" style="margin-top: 0.5rem;" onclick="trackOrder()">Track</button>
+                    </div>
+                    <div id="trackResult" class="hidden">
+                        <div class="progress-bar">
+                            <div class="progress-step completed" id="step1">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Order Placed</div>
+                            </div>
+                            <div class="progress-step active" id="step2">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Contacting Provider</div>
+                            </div>
+                            <div class="progress-step" id="step3">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Email Verification</div>
+                            </div>
+                            <div class="progress-step" id="step4">
+                                <div class="step-number">4</div>
+                                <div class="step-label">Certificate Creation</div>
+                            </div>
+                            <div class="progress-step" id="step5">
+                                <div class="step-number">5</div>
+                                <div class="step-label">Certificate Sent</div>
+                            </div>
+                        </div>
+                        <div id="orderDetails">
+                            <p><strong>Order ID:</strong> <span id="displayOrderId"></span></p>
+                            <p><strong>Certificate Type:</strong> <span id="displayCertType"></span></p>
+                            <p><strong>Status:</strong> <span id="displayStatus">Contacting Provider</span></p>
+                            <p><strong>Estimated Delivery:</strong> <span id="displayDelivery">7-10 working days</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Admin Sign Up / Login</h2>
+            <div class="card">
+                <div class="card-header">Admin Access</div>
+                <div class="card-body">
+                    <form id="adminForm">
+                        <div class="form-group">
+                            <label for="adminEmail">Email Address</label>
+                            <input type="email" id="adminEmail" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" id="adminPassword" required placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="btn btn-block">Sign Up / Login</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 EdCert Solutions. All rights reserved.</p>
+        <p>Contact: support@edcertsolutions.com | +91 9876543210</p>
+    </footer>
+
+    <script>
+        function showOrderForm(certType) {
+            document.getElementById('certificateType').value = certType;
+            document.getElementById('orderTitle').textContent = `Order ${certType}`;
+            document.getElementById('orderSection').classList.remove('hidden');
+            window.scrollTo({
+                top: document.getElementById('orderSection').offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        function selectPayment(method) {
+            const qrContainer = document.getElementById('qrContainer');
+            if (method === 'qr') {
+                qrContainer.classList.remove('hidden');
+                document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
+                document.querySelector('.payment-method:first-child').classList.add('selected');
+            } else {
+                qrContainer.classList.add('hidden');
+                document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
+                document.querySelector('.payment-method:nth-child(2)').classList.add('selected');
+            }
+        }
+
+        function trackOrder() {
+            const orderId = document.getElementById('orderId').value;
+            if (orderId) {
+                document.getElementById('displayOrderId').textContent = orderId;
+                document.getElementById('displayCertType').textContent = "B.Tech Certificate"; // This would come from backend
+                document.getElementById('trackResult').classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Order placed successfully! Your order ID is ED2023' + Math.floor(Math.random() * 1000));
+            // Here you would send an email to the user (not implemented in this example)
+            this.reset();
+            document.getElementById('orderSection').classList.add('hidden');
+        });
+
+        document.getElementById('adminForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            // Here you would implement the sign-up or login logic (not implemented in this example)
+            alert('Admin login/sign-up functionality is not implemented yet.');
+        });
+
+        // Initialize payment method selection
+        selectPayment('qr');
+    </script>
+</body>
+</html>
+```
